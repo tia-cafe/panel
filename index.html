@@ -188,6 +188,11 @@
             gap: 10px;
         }
 
+        .category-hidden-checkbox {
+            display: flex;
+            gap: 10px;
+        }
+
         .category-tabs {
             display: flex;
             gap: 10px;
@@ -484,13 +489,6 @@
             const category = contentData.menu.categories.find(c => c.id === currentCategory);
             if (!category) return;
 
-            container.innerHTML += `
-                <div class="category-hidden-checkbox">
-                    <p>دسته‌بندی مخفی شود؟</p>
-                    <input type="checkbox" ${category.hidden == 'false' ? "" : "checked"}/>
-                </div>
-            `;
-
             category.items.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = 'menu-item-card';
@@ -535,6 +533,11 @@
             });
         }
 
+        function updateCheckbox(value) {
+            const category = contentData.menu.categories.find(c => c.id === currentCategory);
+            category.hidden = value;
+        }
+
         function updateItem(index, field, value) {
             const category = contentData.menu.categories.find(c => c.id === currentCategory);
             category.items[index][field] = value;
@@ -560,18 +563,6 @@
                 description: ''
             });
             renderMenuItems();
-        }
-
-        function handleImageUpload(type, input) {
-            const file = input.files[0];
-            if (!file) return;
-
-            // نمایش پیش‌نمایش
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                showMessage('⚠️ توجه: برای آپلود تصویر، باید آن را در پوشه img/ مخزن GitHub قرار دهید و آدرس را وارد کنید.', 'error');
-            };
-            reader.readAsDataURL(file);
         }
 
         async function saveChanges() {
