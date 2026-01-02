@@ -593,6 +593,8 @@
                 contentData.sha = data.content.sha;
 
                 showMessage('✅ تغییرات با موفقیت ذخیره شد! GitHub Actions در حال ساخت سایت است...', 'success');
+                alert('تغییرات با موفقیت ذخیره شد! GitHub Actions در حال ساخت سایت است...');
+
             } catch (error) {
                 showMessage('❌ خطا در ذخیره تغییرات: ' + error.message, 'error');
                 console.error(error);
@@ -645,7 +647,7 @@
                 const result = await uploadToGitHub(file, section);
                 alert(`آپلود با موفقیت انجام شد!\n\nآدرس فایل:\n${result.url}`);
                 console.log('Upload result:', result);
-                document.getElementById('heroImg').value = '/'+result.path;
+                document.getElementById('heroImg').value = '/' + result.path;
             } catch (error) {
                 console.error('Upload error:', error);
                 alert('خطا در آپلود: ' + error.message);
