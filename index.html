@@ -492,7 +492,7 @@
             container.innerHTML += `
                 <div class="category-hidden-checkbox">
                     <p>دسته‌بندی مخفی شود؟</p>
-                    <input type="checkbox" ${category.hidden == 'false' ? "" : "checked"}/>
+                    <input type="checkbox" ${category.hidden == 'false' ? "" : "checked"} onchange="updateCheckbox(this.checked)"/>
                 </div>
             `;
 
