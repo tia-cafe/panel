@@ -183,6 +183,11 @@
             margin-bottom: 10px;
         }
 
+        .category-hidden-checkbox {
+            display: flex;
+            gap: 10px;
+        }
+
         .category-tabs {
             display: flex;
             gap: 10px;
@@ -478,6 +483,13 @@
 
             const category = contentData.menu.categories.find(c => c.id === currentCategory);
             if (!category) return;
+
+            container.innerHTML += `
+                <div class="category-hidden-checkbox">
+                    <p>دسته‌بندی مخفی شود؟</p>
+                    <input type="checkbox" ${category.hidden == 'false' ? "" : "checked"}/>
+                </div>
+            `;
 
             category.items.forEach((item, index) => {
                 const card = document.createElement('div');
