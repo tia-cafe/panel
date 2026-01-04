@@ -654,7 +654,8 @@
 
             // Upload to GitHub
             try {
-                const result = await uploadToGitHub(file, section);
+                const type = isVideo ? "vid" : "img";
+                const result = await uploadToGitHub(file, type);
                 alert(`آپلود با موفقیت انجام شد!\n\nآدرس فایل:\n${result.url}`);
                 console.log('Upload result:', result);
                 document.getElementById('heroImg').value = '/' + result.path;
@@ -665,12 +666,12 @@
         }
 
         // Upload file to GitHub repository
-        async function uploadToGitHub(file, section) {
+        async function uploadToGitHub(file, type) {
             // Generate filename with timestamp
             const timestamp = Date.now();
             const extension = file.name.split('.').pop();
             const folder = 'img';
-            const filename = `${section}_${timestamp}.${extension}`;
+            const filename = `${type}_${timestamp}.${extension}`;
             const path = `${folder}/${filename}`;
 
             // Convert file to base64
